@@ -1,7 +1,29 @@
+# Build output — never commit, Cloudflare rebuilds it
 dist/
+
+# Wrangler / Node
 .wrangler/
 node_modules/
-.DS_Store
+.dev.vars
+.dev.vars.*
+wrangler.toml.bak
+
+# Secrets and local env
+.env
+.env.*
+
+# Logs
+*.log
+deploy-last-run.log
+
+# Old manual-upload copies (superseded by the GitHub deploy)
 altiva-upload-cloudflare/
 altiva-upload-cloudflare.zip
-deploy-last-run.log
+
+# macOS / editors
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.vscode/
+.idea/

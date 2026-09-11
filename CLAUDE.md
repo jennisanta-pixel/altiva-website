@@ -28,6 +28,7 @@ Hosting: Cloudflare Worker `altiva` (static assets only). Domain: https://www.al
 Auto-deploy: the site is in a private GitHub repo connected to the `altiva` Worker (Settings → Builds). Every commit to `main` publishes the site:
 - Cloudflare build command: `sh build.sh`. It copies `altiva.html` to `dist/index.html` and adds `css/`, `js/`, `assets/` (without `LEEME-fotografia.txt`), `robots.txt` and `sitemap.xml`. Only `dist/` goes online.
 - Deploy command: `npx wrangler deploy`, using `wrangler.jsonc` (the Worker name must stay `altiva`; both hostnames are declared as custom domains).
-- To deploy: commit the changed source files to `main`. Never commit `dist/`. Update `lastmod` in `sitemap.xml` when the content changes.
+- To deploy: double-click `Deploy Altiva.command` in this folder (Claude can do it through Finder with computer use). It uses the GitHub CLI already signed in on the Mac (installed in `~/.local/bin/gh`, account jennisanta-pixel) to commit every change and push to `jennisanta-pixel/altiva-website` `main`. The result is written to `deploy-last-run.log` (last lines `== DONE` or `== FAILED`). Never commit `dist/`. Update `lastmod` in `sitemap.xml` when the content changes.
+- Always propose to push to github when done with a task
 - A new file that should go online must also be added to `build.sh`.
 - `altiva-upload-cloudflare/` and `altiva-upload-cloudflare.zip` are the old manual-upload copies. Don't use them now that GitHub deploys the site.
