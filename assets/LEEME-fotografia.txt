@@ -1,0 +1,42 @@
+ALTIVA — Fotografía de los paneles a sangre
+===========================================
+
+Estos dos archivos son los fondos de portada y de "Our story".
+Para cambiarlos basta con reemplazarlos con el mismo nombre.
+No hay que tocar el HTML ni el CSS.
+
+  assets/hero.jpg    Portada.        Actual: 1024 × 519 px   (1,97 : 1)
+  assets/story.jpg   "Our story".    Actual: 1024 × 280 px   (3,66 : 1)
+
+QUÉ HACE FALTA
+--------------
+Ancho mínimo   2560 px
+Recomendado    3200 px  (pantallas de 1600 px a 2x)
+Ideal          3840 px  (pantallas de 1920 px a 2x)
+
+Proporción     Da igual la exacta: el CSS usa background-size: cover,
+               así que la imagen se recorta desde el centro.
+               Para que el recorte no pierda nada importante, entrega
+               entre 1,8:1 y 2,2:1 en la portada, y entre 2,5:1 y 3,6:1
+               en "Our story".
+
+Formato        JPEG de calidad alta (90 o más) o PNG.
+               No hace falta optimizarlas: se hace después.
+
+Encuadre       El sujeto principal debe quedar a la derecha del centro.
+               El tercio izquierdo se cubre con un velo oscuro para que
+               el texto cumpla contraste, así que ahí no debe haber nada
+               que importe.
+
+IMPORTANTE     La imagen NO puede llevar texto, logotipos ni botones
+               incrustados: la web pone los suyos encima y se duplican.
+
+POR QUÉ SE VE BLANDA HOY
+------------------------
+Las dos imágenes actuales salen de una maqueta de 1024 px de ancho.
+Medido: el detalle real se agota a 1024 px. Una pantalla de 1440 px a 2x
+pide 2880 px, y una de 2560 px a 2x pide 5120 px. Todo lo que hay por
+encima de 1024 px es interpolación, no información.
+
+Se sirven a su resolución nativa, sin ampliar y sin filtros, para que la
+carencia sea visible y no quede disimulada.

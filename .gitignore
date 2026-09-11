@@ -1,0 +1,7 @@
+dist/
+.wrangler/
+node_modules/
+.DS_Store
+altiva-upload-cloudflare/
+altiva-upload-cloudflare.zip
+deploy-last-run.log

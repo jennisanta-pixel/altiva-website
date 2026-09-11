@@ -1,0 +1,6 @@
+# ALTIVA — robots.txt
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.altivaspecialitycoffee.com/sitemap.xml
