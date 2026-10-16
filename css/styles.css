@@ -596,6 +596,15 @@
   .sample-form button:hover{background:transparent;color:var(--ink)}
   .form-note{grid-column:1/-1;font-family:'Jost',sans-serif;font-weight:300;font-size:10.5px;
     letter-spacing:.1em;color:var(--text)}
+  .form-note a,.form-status a{color:var(--gold-deep);text-underline-offset:3px}
+  .field .opt{text-transform:none;letter-spacing:.04em;color:var(--gold-deep)}
+  .sample-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .sample-form button:disabled{opacity:.6;cursor:default}
+  .form-status{grid-column:1/-1;font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.6;color:var(--ink)}
+  .form-status:empty{display:none}
+  .form-status.ok{padding:18px 20px;border-left:2px solid var(--gold-deep);background:rgba(156,124,67,.08)}
+  .form-status.err{padding:18px 20px;border-left:2px solid #9b3b2e;background:rgba(155,59,46,.06)}
+  .sample-form.is-sent .field,.sample-form.is-sent .form-note{display:none}
   @media(max-width:860px){
     .sample-grid{grid-template-columns:1fr;gap:44px}
     form.sample-form{grid-template-columns:1fr}

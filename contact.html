@@ -127,13 +127,14 @@
             <a href="mailto:hello@altivaspecialitycoffee.com" data-track="email">hello@altivaspecialitycoffee.com</a>
           </div>
         </div>
-        <!-- Sin backend: main.js compone la solicitud y la abre en WhatsApp (+65 8641 9553).
-             Cuando exista correo o servicio de envio (Formspree u otro), cambiar action y
-             quitar data-wa. NOT CONFIRMED - direccion de correo pendiente de la propietaria. -->
-        <form class="sample-form rv d2" action="#" method="post" data-wa="6586419553" novalidate>
+        <!-- Envio: main.js manda la solicitud a Web3Forms, que la reenvia por correo a
+             sales@altivaspecialitycoffee.com. data-key = Access Key de Web3Forms (publica, va en el HTML).
+             Si data-key empieza por REPLACE, el formulario abre WhatsApp como antes. -->
+        <form class="sample-form rv d2" action="https://api.web3forms.com/submit" method="post" data-key="9820ffd9-7468-4919-a609-f76fa609cc02" data-wa="6586419553" novalidate>
           <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" autocomplete="organization" required></div>
           <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-phone">Phone or WhatsApp <span class="opt">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
           <div class="field"><label for="f-market">Market you serve</label><input id="f-market" name="market" type="text" placeholder="Country or region"></div>
           <div class="field"><label for="f-type">You are</label>
             <select id="f-type" name="buyer">
@@ -156,10 +157,12 @@
               <option>Not sure yet</option>
             </select>
           </div>
-          <div class="field full"><label for="f-volume">Estimated annual volume</label><input id="f-volume" name="volume" type="text" placeholder="In kilos or bags"></div>
+          <div class="field"><label for="f-volume">Estimated annual volume</label><input id="f-volume" name="volume" type="text" placeholder="In kilos or bags"></div>
           <div class="field full"><label for="f-msg">Anything else</label><textarea id="f-msg" name="message" rows="4"></textarea></div>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button type="submit">Send request</button>
-          <p class="form-note">Opens in WhatsApp with your details filled in. We reply within two working days.</p>
+          <p class="form-note">Sent straight to our sales team. We reply within two working days. Prefer WhatsApp? <a href="https://wa.me/6586419553" data-track="whatsapp" rel="noopener">Chat with us</a>.</p>
+          <p class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>

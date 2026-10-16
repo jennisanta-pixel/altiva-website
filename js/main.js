@@ -88,38 +88,92 @@ tags.forEach(t => t.addEventListener('click', () => {
     else if (href.indexOf('wa.me') > -1)       send('whatsapp_click', {method: 'whatsapp'});
     else if (href.indexOf('mailto:') === 0)    send('email_click',    {method: 'email'});
   }, {passive: true});
-  var form = document.querySelector('.sample-form');
-  if (form) form.addEventListener('submit', function () {
-    var v = form.querySelector('[name="variety"]');
-    send('quote_request', {form: 'sample_request', variety: v ? v.value : ''});
-  });
 })();
 
-/* ── Solicitud de muestras sin backend ──
-   Compone el mensaje con los campos del formulario y lo abre en WhatsApp.
-   Sustituir por un envio real (Formspree o correo) cuando exista destino. */
+/* ── Solicitud de muestras ──
+   Con data-key (Web3Forms) envia la solicitud por correo a sales@ sin salir de la pagina.
+   Sin clave valida, compone el mensaje y lo abre en WhatsApp (comportamiento anterior). */
 (function () {
-  var form = document.querySelector('.sample-form[data-wa]');
+  var form = document.querySelector('.sample-form');
   if (!form) return;
+  var key = form.dataset.key || '';
+  var useEmail = key && key.indexOf('REPLACE') !== 0;
+  var status = form.querySelector('.form-status');
+  var button = form.querySelector('button[type="submit"]');
+  var waLink = 'https://wa.me/' + (form.dataset.wa || '6586419553');
+  var get = function (n) {
+    var el = form.querySelector('[name="' + n + '"]');
+    return el && el.value.trim() ? el.value.trim() : '';
+  };
+  var say = function (html, kind) {
+    if (!status) return;
+    status.className = 'form-status ' + (kind || '');
+    status.innerHTML = html;
+  };
+  if (!useEmail) {
+    var note = form.querySelector('.form-note');
+    if (note) note.textContent = 'Opens in WhatsApp with your details filled in. We reply within two working days.';
+  }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.reportValidity()) return;
-    var get = function (n) {
-      var el = form.querySelector('[name="' + n + '"]');
-      return el && el.value.trim() ? el.value.trim() : '';
+    var track = function () {
+      if (typeof window.gtag === 'function') window.gtag('event', 'quote_request', {form: 'sample_request', variety: get('variety')});
     };
-    var lines = [
-      'Sample request — Altiva',
-      'Name: ' + get('name'),
-      'Company: ' + get('company'),
-      'Email: ' + get('email'),
-      'Market: ' + get('market'),
-      'Business: ' + get('buyer'),
-      'Variety: ' + get('variety'),
-      'Annual volume: ' + get('volume')
-    ];
-    if (get('message')) lines.push('Notes: ' + get('message'));
-    window.open('https://wa.me/' + form.dataset.wa + '?text=' +
-      encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+    if (!useEmail) {
+      var lines = [
+        'Sample request — Altiva',
+        'Name: ' + get('name'),
+        'Company: ' + get('company'),
+        'Email: ' + get('email'),
+        'Phone: ' + get('phone'),
+        'Market: ' + get('market'),
+        'Business: ' + get('buyer'),
+        'Variety: ' + get('variety'),
+        'Annual volume: ' + get('volume')
+      ];
+      if (get('message')) lines.push('Notes: ' + get('message'));
+      track();
+      window.open(waLink + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+      return;
+    }
+    var bot = form.querySelector('[name="botcheck"]');
+    var payload = {
+      access_key: key,
+      subject: 'Sample request — ' + get('company') + ' (' + (get('variety') || 'variety not chosen') + ')',
+      from_name: 'Altiva website',
+      replyto: get('email'),
+      botcheck: bot && bot.checked,
+      Name: get('name'),
+      Company: get('company'),
+      Email: get('email'),
+      'Phone / WhatsApp': get('phone'),
+      'Market': get('market'),
+      'Business type': get('buyer'),
+      'Variety': get('variety'),
+      'Annual volume': get('volume'),
+      'Message': get('message')
+    };
+    button.disabled = true;
+    var label = button.textContent;
+    button.textContent = 'Sending…';
+    say('', '');
+    fetch(form.action, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.json(); }).then(function (data) {
+      if (!data || !data.success) throw new Error('not sent');
+      track();
+      form.classList.add('is-sent');
+      say('<b>Request received. Thank you.</b> We will reply to ' + get('email').replace(/[<>&"]/g, '') +
+          ' within two working days. Prefer to talk now? <a href="' + waLink + '" data-track="whatsapp" rel="noopener">Chat with us on WhatsApp</a>.', 'ok');
+      form.reset();
+      button.textContent = 'Sent';
+    }).catch(function () {
+      button.disabled = false;
+      button.textContent = label;
+      say('Your request could not be sent. Please try again, or write to <a href="mailto:sales@altivaspecialitycoffee.com">sales@altivaspecialitycoffee.com</a> or <a href="' + waLink + '" rel="noopener">WhatsApp</a>.', 'err');
+    });
   });
 })();
