@@ -2,7 +2,8 @@
 
 // nav on scroll
 const nav = document.getElementById('nav');
-addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+const solidNav = document.body.classList.contains('page-solid');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', solidNav || scrollY > 40), {passive:true});
 
 // reveal on scroll
 const io = new IntersectionObserver(es => es.forEach(e => {
@@ -27,7 +28,7 @@ if (toggle && panel) {
 
 // active section in the nav
 const navLinks = [...document.querySelectorAll('.nav-links a')];
-const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const sections = navLinks.filter(a => a.getAttribute('href').startsWith('#')).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 if (sections.length) {
   const spy = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -91,5 +92,34 @@ tags.forEach(t => t.addEventListener('click', () => {
   if (form) form.addEventListener('submit', function () {
     var v = form.querySelector('[name="variety"]');
     send('quote_request', {form: 'sample_request', variety: v ? v.value : ''});
+  });
+})();
+
+/* ── Solicitud de muestras sin backend ──
+   Compone el mensaje con los campos del formulario y lo abre en WhatsApp.
+   Sustituir por un envio real (Formspree o correo) cuando exista destino. */
+(function () {
+  var form = document.querySelector('.sample-form[data-wa]');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    var get = function (n) {
+      var el = form.querySelector('[name="' + n + '"]');
+      return el && el.value.trim() ? el.value.trim() : '';
+    };
+    var lines = [
+      'Sample request — Altiva',
+      'Name: ' + get('name'),
+      'Company: ' + get('company'),
+      'Email: ' + get('email'),
+      'Market: ' + get('market'),
+      'Business: ' + get('buyer'),
+      'Variety: ' + get('variety'),
+      'Annual volume: ' + get('volume')
+    ];
+    if (get('message')) lines.push('Notes: ' + get('message'));
+    window.open('https://wa.me/' + form.dataset.wa + '?text=' +
+      encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
   });
 })();

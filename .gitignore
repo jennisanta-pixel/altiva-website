@@ -27,3 +27,6 @@ altiva-upload-cloudflare.zip
 .Trashes
 .vscode/
 .idea/
+
+# Claude working files (backups, notes) — local only
+Claude outputs/
