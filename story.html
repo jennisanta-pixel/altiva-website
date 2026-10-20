@@ -53,7 +53,7 @@
 <link rel="preload" as="image" href="assets/story.webp" type="image/webp" media="(min-width: 901px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/story-m.webp" type="image/webp" media="(max-width: 900px)" fetchpriority="high">
 </head>
-<body>
+<body class="page-solid">
 
 
 <a class="skip-link" href="#top">Skip to content</a>
@@ -81,7 +81,7 @@
 </svg>
 
 <!-- ══════════ NAV ══════════ -->
-<nav id="nav" aria-label="Main">
+<nav id="nav" class="scrolled" aria-label="Main">
   <a class="nav-mark" href="altiva.html" aria-label="Altiva home">
     <svg viewBox="0 0 200 181.1"><use href="#monogram" xlink:href="#monogram"/></svg>
     <span>ALTIVA</span>
@@ -126,33 +126,22 @@
   </section>
 
   <!-- ══════════ 02 · DISTANCE ══════════ -->
-  <section id="distance" class="chapter ch-distance">
-    <span class="seam" aria-hidden="true"></span>
-    <div class="side origin">
-      <picture>
-        <source type="image/avif" srcset="assets/var-branch-900.avif">
-        <source type="image/webp" srcset="assets/var-branch-900.webp">
-        <img src="assets/var-branch.jpg" width="1400" height="634" loading="lazy" decoding="async" alt="Coffee cherries ripening on the branch in Colombia">
-      </picture>
-      <div class="pad">
-        <span class="mini rv">Colombia</span>
-        <p class="big rv d1">Sometimes distance<br>makes you see home differently.</p>
-      </div>
-    </div>
-    <div class="side city">
-      <div class="pad">
-        <span class="mini rv">Singapore</span>
-        <div class="body rv d1">
+  <section id="distance" class="chapter ch-bridge ivory">
+    <div class="wrap">
+      <figure class="rv">
+        <picture>
+          <source type="image/webp" srcset="assets/story-cherries-1100.webp 1100w, assets/story-cherries-1729.webp 1729w" sizes="(max-width: 860px) 100vw, 50vw">
+          <img src="assets/story-cherries.jpg" width="1729" height="910" loading="lazy" decoding="async" alt="Ripe red coffee cherries on the branch in Colombia">
+        </picture>
+      </figure>
+      <div class="txt">
+        <span class="ch-eyebrow rv"><span>Colombia</span><i></i></span>
+        <h2 class="ch-title rv d1">From Colombia<br>to Singapore</h2>
+        <div class="ch-prose rv d2">
           <p>After studying International Business in Colombia, Altiva&rsquo;s founder eventually built a life in Singapore.</p>
-          <p style="margin-top:1.2em">From the other side of the world, something familiar began to look different: Colombian coffee was not only part of her past. It had the potential to become a bridge between two markets, two cultures and two worlds.</p>
+          <p>From the other side of the world, something familiar began to look different: Colombian coffee was not only part of the past. It had the potential to bring people together, to be shared, and to create meaningful connections across cultures.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="chapter noir statement-band">
-    <div class="wrap">
-      <p class="statement rv">Distance revealed the value<em>of what had always been close.</em></p>
     </div>
   </section>
 
