@@ -20,7 +20,7 @@ assets/            → images
 
 ## Deploying
 
-What goes online: `altiva.html` (as `index.html`), `css/`, `js/`, `assets/`, `robots.txt` and `sitemap.xml`. `build.sh` controls this.
+What goes online: `altiva.html` (as `index.html`), the inner pages, `404.html` (served by Cloudflare for missing addresses via `not_found_handling` in `wrangler.jsonc`; its links are made absolute by `build.sh`), `css/`, `js/`, `assets/`, `robots.txt` and `sitemap.xml`. `build.sh` controls this.
 `altiva-backup-single-file.html` (old single-file backup), `CLAUDE.md`, `wrangler.jsonc` and `build.sh` never go online.
 
 Hosting: Cloudflare Worker `altiva` (static assets only). Domain: https://www.altivaspecialitycoffee.com/ (www is the main address; the root domain redirects to www).

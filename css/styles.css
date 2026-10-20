@@ -43,8 +43,12 @@
   }
   .skip-link:focus-visible{transform:translate(-50%,0)}
 
+  /* Texto solo para lectores de pantalla (p. ej. encabezados de sección que el diseño no muestra). */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
   .nav-mark, .nav-links a, .tags button{position:relative}
-  .nav-mark::before, .nav-links a::before, .tags button::before{
+  .nav-toggle, footer .fmail a{position:relative}
+  .nav-mark::before, .nav-links a::before, .tags button::before, .nav-toggle::before, footer .fmail a::before{
     content:"";position:absolute;left:0;right:0;top:50%;
     height:44px;transform:translateY(-50%);
   }
@@ -814,7 +818,11 @@
   .panel .bg{position:absolute;inset:0;z-index:0;margin:0;background-color:#100f0d;
     background-repeat:no-repeat;background-size:cover;background-position:center}
   .hero  .bg{background-image:url("../assets/hero.jpg")}
-  #story .bg{background-image:url("../assets/story.jpg")}
+  /* Our story: foto de la finca (1536x1024). Se apoya a la derecha para que la casa
+     quede siempre a la vista; WebP con JPG de respaldo; recorte propio en movil */
+  #story .bg{background-image:url("../assets/story.jpg");
+    background-image:image-set(url("../assets/story.webp") type("image/webp"),url("../assets/story.jpg") type("image/jpeg"));
+    background-position:100% 40%}
   .panel .bg img{width:100%;height:100%;object-fit:cover;display:block}
   /* el heroe conserva la proporcion de la fotografia y se apoya a la derecha,
      de modo que la montana y la taza se leen enteras en lugar de recortarse */
@@ -873,6 +881,20 @@
       rgba(14,13,11,.74) 38%,rgba(14,13,11,.86) 72%,rgba(14,13,11,.93) 100%)}
     .p-actions{gap:22px}
     .btn-gold{width:100%;justify-content:space-between}
+  }
+
+  /* Our story: degradado oscuro a la izquierda, detras del texto */
+  #story .bg::after{background:
+    linear-gradient(180deg,rgba(14,13,11,.55) 0%,rgba(14,13,11,0) 20%),
+    linear-gradient(90deg,rgba(14,13,11,.90) 0%,rgba(14,13,11,.80) 26%,
+    rgba(14,13,11,.52) 46%,rgba(14,13,11,.16) 64%,rgba(14,13,11,0) 80%)}
+  @media(max-width:900px){
+    #story .bg{background-image:url("../assets/story.jpg");
+      background-image:image-set(url("../assets/story-m.webp") type("image/webp"),url("../assets/story.jpg") type("image/jpeg"));
+      background-position:100% 40%}
+    #story .bg::after{background:
+      linear-gradient(90deg,rgba(14,13,11,.86) 0%,rgba(14,13,11,.70) 60%,rgba(14,13,11,.34) 100%),
+      linear-gradient(180deg,rgba(14,13,11,.30) 0%,rgba(14,13,11,0) 40%,rgba(14,13,11,.55) 100%)}
   }
 
   /* ═══════════ como trabajamos · pasos ═══════════ */
