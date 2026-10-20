@@ -428,7 +428,7 @@
   }
 
   /* tarjetas a sangre, filete de oro entre ellas */
-  .var-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .var-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
   .var-card{position:relative;aspect-ratio:1/1;overflow:hidden;background:#141210;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:34px 22px;border-left:1px solid rgba(203,169,134,.30)}
@@ -442,6 +442,7 @@
   .var-card:nth-child(3) .shot img{filter:brightness(1.42) saturate(.88) contrast(1.12)}
   .var-card:nth-child(3)::after{background:radial-gradient(118% 86% at 50% 44%,rgba(10,9,8,.26) 0%,rgba(10,9,8,.56) 50%,rgba(10,9,8,.88) 100%)}
   .var-card:nth-child(4) .shot img{filter:brightness(1.10) saturate(1.18) contrast(1.05)}
+  .var-card:nth-child(5) .shot img{filter:brightness(.92) saturate(1.10) contrast(1.05)}
   .var-card::after{content:"";position:absolute;inset:0;z-index:1;
     background:radial-gradient(118% 86% at 50% 44%,rgba(10,9,8,.34) 0%,rgba(10,9,8,.66) 50%,rgba(10,9,8,.92) 100%)}
   .var-card > *:not(.shot){position:relative;z-index:2}
@@ -466,9 +467,10 @@
   .var-card .disc:hover svg path{stroke:#fff}
   @media(max-width:1000px){.var-grid{grid-template-columns:repeat(2,1fr)}
     .var-card:nth-child(odd){border-left:0}
-    .var-card:nth-child(n+3){border-top:1px solid rgba(203,169,134,.30)}}
+    .var-card:nth-child(n+3){border-top:1px solid rgba(203,169,134,.30)}
+    .var-card:last-child:nth-child(odd){grid-column:1/-1;aspect-ratio:2/1}}
   @media(max-width:560px){.var-grid{grid-template-columns:1fr}
-    .var-card{aspect-ratio:4/3;border-left:0;border-top:1px solid rgba(203,169,134,.30)}}
+    .var-card,.var-card:last-child:nth-child(odd){aspect-ratio:4/3;border-left:0;border-top:1px solid rgba(203,169,134,.30)}}
 
   /* ---------- ficha de catacion ---------- */
   .cup{display:none;background:#141210;border-top:1px solid rgba(203,169,134,.22)}
