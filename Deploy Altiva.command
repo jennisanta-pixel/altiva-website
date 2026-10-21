@@ -69,3 +69,9 @@ fi
 git push -q -u origin main || fail "Push to GitHub failed."
 log "-- GitHub is up to date ($(git rev-parse --short HEAD)). Cloudflare will publish in about a minute."
 log "== DONE"
+
+# 6. Close this Terminal window on success (a failed run stays open so the error can be read).
+TTY_NOW=$(tty)
+nohup /bin/bash -c "sleep 1; osascript -e 'tell application \"Terminal\"' -e 'repeat with w in windows' -e 'if tty of selected tab of w is \"$TTY_NOW\" then close w' -e 'end repeat' -e 'end tell'" >/dev/null 2>&1 &
+disown
+exit 0
