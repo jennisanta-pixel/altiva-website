@@ -179,3 +179,45 @@ tags.forEach(t => t.addEventListener('click', () => {
     });
   });
 })();
+
+// Origin: cada categoria abre su galeria (<dialog>), con flechas, teclado y deslizamiento
+(function () {
+  var openers = document.querySelectorAll('.ph-open[data-gallery]');
+  if (!openers.length) return;
+  var smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  openers.forEach(function (btn) {
+    var dlg = document.getElementById(btn.dataset.gallery);
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    var track = dlg.querySelector('.og-track');
+    var slides = dlg.querySelectorAll('.og-slide');
+    var count = dlg.querySelector('.og-count');
+    var prev = dlg.querySelector('.og-prev');
+    var next = dlg.querySelector('.og-next');
+    var current = function () { return Math.round(track.scrollLeft / track.clientWidth); };
+    var update = function () {
+      var i = current();
+      if (count) count.textContent = (i + 1) + ' / ' + slides.length;
+      if (prev) prev.disabled = i === 0;
+      if (next) next.disabled = i === slides.length - 1;
+    };
+    var go = function (d) {
+      track.scrollTo({left: (current() + d) * track.clientWidth, behavior: smooth ? 'smooth' : 'auto'});
+    };
+    btn.addEventListener('click', function () {
+      dlg.showModal();
+      track.scrollLeft = 0;
+      update();
+      document.documentElement.style.overflow = 'hidden';
+    });
+    dlg.addEventListener('close', function () { document.documentElement.style.overflow = ''; btn.focus(); });
+    dlg.querySelector('.og-close').addEventListener('click', function () { dlg.close(); });
+    if (prev) prev.addEventListener('click', function () { go(-1); });
+    if (next) next.addEventListener('click', function () { go(1); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, {passive: true});
+    dlg.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { go(1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { go(-1); e.preventDefault(); }
+    });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg || e.target.classList.contains('og-slide')) dlg.close(); });
+  });
+})();
