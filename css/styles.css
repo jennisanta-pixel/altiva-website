@@ -979,11 +979,11 @@
   @media (prefers-reduced-motion: reduce){.wa-float{transition:none}.wa-float:hover{transform:none}}
 
   /* ═══════════ /links · pagina para la biografia de Instagram (movil primero) ═══════════ */
-  body.links-page{--lk-gold:#dcb45e;--lk-gold-soft:rgba(220,180,94,.86);--lk-gold-line:rgba(220,180,94,.5);background:#101c13;color:var(--lk-gold);min-height:100vh;min-height:100dvh}
-  .lk-bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#101c13}
+  body.links-page{--lk-gold:#d7b472;--lk-gold-soft:rgba(215,180,114,.86);--lk-gold-line:rgba(215,180,114,.5);background:#14291f;color:var(--lk-gold);min-height:100vh;min-height:100dvh}
+  .lk-bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#14291f}
   .lk-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
   .lk-bg::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(16,28,19,.80) 0%,rgba(16,28,19,.84) 34%,rgba(16,28,19,.93) 70%,rgba(16,28,19,.97) 100%)}
+    background:linear-gradient(180deg,rgba(20,41,31,.80) 0%,rgba(20,41,31,.85) 34%,rgba(20,41,31,.93) 70%,rgba(20,41,31,.97) 100%)}
   .lk{position:relative;z-index:1;max-width:480px;margin:0 auto;
     padding:calc(44px + env(safe-area-inset-top)) 20px calc(36px + env(safe-area-inset-bottom));
     display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -998,10 +998,10 @@
   .lk-list{width:100%;display:flex;flex-direction:column;gap:12px}
   .lk-btn{display:grid;grid-template-columns:40px 1fr 24px;align-items:center;gap:14px;min-height:76px;
     padding:14px 18px 14px 16px;text-align:left;text-decoration:none;color:var(--lk-gold);
-    background:rgba(16,28,19,.55);border:1px solid var(--lk-gold-line);
+    background:rgba(20,41,31,.55);border:1px solid var(--lk-gold-line);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
     transition:border-color .4s,background .4s}
-  .lk-btn:hover,.lk-btn:focus-visible{border-color:var(--lk-gold);background:rgba(220,180,94,.12)}
+  .lk-btn:hover,.lk-btn:focus-visible{border-color:var(--lk-gold);background:rgba(215,180,114,.12)}
   .lk-btn:focus-visible{outline:2px solid var(--lk-gold);outline-offset:3px}
   .lk-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--lk-gold);text-align:center}
   .lk-ico{display:grid;place-items:center}
@@ -1014,15 +1014,15 @@
     border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
   .lk-btn:hover .lk-arrow,.lk-btn:focus-visible .lk-arrow{width:28px}
   .lk-btn .lk-arrow{color:var(--lk-gold)}
-  .lk-primary{background:linear-gradient(120deg,#f2d78c 0%,#dcb45e 38%,#c4943a 70%,#e2bf6e 100%);border-color:#dcb45e;color:#142518}
+  .lk-primary{background:linear-gradient(120deg,#e2d19d 0%,#d7b472 38%,#c49f62 72%,#d7b472 100%);border-color:#d7b472;color:#14291f}
   .lk-primary .lk-txt small{color:#2e3b2c;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.08em}
   .lk-primary .lk-ico{color:#142518}
   .lk-primary .lk-arrow{color:#142518}
-  .lk-primary:hover,.lk-primary:focus-visible{background:linear-gradient(120deg,#f6e09c 0%,#e2bf6e 45%,#cf9f45 100%);border-color:#e2bf6e}
+  .lk-primary:hover,.lk-primary:focus-visible{background:linear-gradient(120deg,#ead9a8 0%,#dcbc80 45%,#cba86e 100%);border-color:#e2d19d}
   .lk-foot{border:0;background:none;padding:0;text-align:center;margin-top:40px;display:flex;flex-direction:column;gap:6px;font-family:'Jost',sans-serif;font-size:12px;
     letter-spacing:.08em;color:var(--lk-gold-soft)}
   .lk-foot a{color:var(--lk-gold);text-decoration:none;display:inline-block;padding:8px 4px}
-  .lk-foot a:hover{color:#f2d78c}
-  .lk-copy{margin-top:10px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(220,180,94,.6)}
+  .lk-foot a:hover{color:#e2d19d}
+  .lk-copy{margin-top:10px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(215,180,114,.6)}
   @media(min-width:760px){.lk{padding-top:72px}.lk-btn{min-height:82px}}
   @media(prefers-reduced-motion:reduce){.lk-btn,.lk-arrow{transition:none}}
