@@ -118,7 +118,7 @@ tags.forEach(t => t.addEventListener('click', () => {
     e.preventDefault();
     if (!form.reportValidity()) return;
     var track = function () {
-      if (typeof window.gtag === 'function') window.gtag('event', 'quote_request', {form: 'sample_request', variety: get('variety')});
+      if (typeof window.gtag === 'function') window.gtag('event', 'quote_request', {form: 'sample_request', variety: get('variety'), format: get('format')});
     };
     if (!useEmail) {
       var lines = [
@@ -129,6 +129,7 @@ tags.forEach(t => t.addEventListener('click', () => {
         'Phone: ' + get('phone'),
         'Market: ' + get('market'),
         'Business: ' + get('buyer'),
+        'Green or roasted: ' + get('format'),
         'Variety: ' + get('variety'),
         'Annual volume: ' + get('volume')
       ];
@@ -140,7 +141,7 @@ tags.forEach(t => t.addEventListener('click', () => {
     var bot = form.querySelector('[name="botcheck"]');
     var payload = {
       access_key: key,
-      subject: 'Sample request — ' + get('company') + ' (' + (get('variety') || 'variety not chosen') + ')',
+      subject: 'Sample request — ' + get('company') + ' (' + (get('format') || 'format not chosen') + ' · ' + (get('variety') || 'variety not chosen') + ')',
       from_name: 'Altiva website',
       replyto: get('email'),
       botcheck: bot && bot.checked,
@@ -150,6 +151,7 @@ tags.forEach(t => t.addEventListener('click', () => {
       'Phone / WhatsApp': get('phone'),
       'Market': get('market'),
       'Business type': get('buyer'),
+      'Green or roasted': get('format'),
       'Variety': get('variety'),
       'Annual volume': get('volume'),
       'Message': get('message')
